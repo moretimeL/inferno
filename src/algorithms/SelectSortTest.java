@@ -10,6 +10,10 @@ import java.util.List;
  * @time O(n²)
  */
 public class SelectSortTest {
+
+    // 排序循环次数
+    private static Integer sortCount = 0;
+
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
         list.add(19);
@@ -17,7 +21,10 @@ public class SelectSortTest {
         list.add(10);
         list.add(15);
         list.add(28);
+        System.out.println("选择排序==========================");
+        System.out.println("排序前数组:" + list);
         System.out.println("排序后数组:" + selectSort(list));
+        System.out.println("排序循环次数:" + sortCount);
     }
 
     static int getSmallIndex(List<Integer> list){
@@ -28,6 +35,7 @@ public class SelectSortTest {
         Integer small = list.get(0);
 
         for (int i = 0; i < list.size(); i++) {
+            sortCount++;
             // 如果数组里面的元素小于0号元素则更新最小元素和最小元素坐标
             if (list.get(i) < small) {
                 small = list.get(i);
@@ -41,6 +49,7 @@ public class SelectSortTest {
         List<Integer> sortList = new ArrayList<>();
         int size = list.size();
         for (int i = 0; i < size; i++) {
+            sortCount++;
             // 将找出的最小元素按顺序排入新数组
             sortList.add(list.remove(getSmallIndex(list)));
         }
